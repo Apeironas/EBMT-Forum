@@ -2,6 +2,8 @@
 
 Bilgisayar Mühendisliği bölümü için yaptığımız forum sitesi. Öğrenciler soru sorabiliyor, cevap yazabiliyor, gönderileri oylayabiliyor. Dönem projesi olarak bir ekiple geliştirdik. Bu repoda backend ve frontend birlikte duruyor.
 
+Canlı demo: https://ebmtforum.netlify.app/
+
 ## Neler yapabiliyor
 
 - Kayıt / giriş (Supabase Auth, JWT)
