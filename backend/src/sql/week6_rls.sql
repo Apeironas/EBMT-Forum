@@ -1,4 +1,4 @@
--- RLS aktiflestir ve tablolar icin erisim politikalarini tanimla
+-- RLS'i aktifleştir ve tablolar için erişim politikalarını tanımla
 
 CREATE OR REPLACE FUNCTION public.is_elevated()
 RETURNS boolean

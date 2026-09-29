@@ -1,4 +1,4 @@
--- notifications tablosunun eksik kolonlarini tamamla
+-- notifications tablosunun eksik kolonlarını tamamla
 
 ALTER TABLE public.notifications
   ADD COLUMN IF NOT EXISTS type    text  NOT NULL DEFAULT 'unknown',

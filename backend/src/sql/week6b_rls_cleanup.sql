@@ -1,4 +1,4 @@
--- Eski/cakisan RLS politikalarini temizle
+-- Eski/çakışan RLS politikalarını temizle
 
 DROP POLICY IF EXISTS "Public can read categories" ON public.categories;
 

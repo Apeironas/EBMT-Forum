@@ -1,4 +1,4 @@
--- categories/posts/tags tablolarina eksik kolonlari ekle
+-- categories/posts/tags tablolarına eksik kolonları ekle
 
 ALTER TABLE public.categories
   ADD COLUMN IF NOT EXISTS description text,

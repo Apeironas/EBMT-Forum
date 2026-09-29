@@ -1,4 +1,4 @@
--- Gonderi goruntulenme sayacini artiran fonksiyon
+-- Gönderi görüntülenme sayacını artıran fonksiyon
 
 CREATE OR REPLACE FUNCTION public.increment_post_view(p_post_id uuid)
 RETURNS void

@@ -1,4 +1,4 @@
--- Kabul edilen cevap: accepted_comment_id + accept/unaccept fonksiyonlari
+-- Kabul edilen cevap: accepted_comment_id + accept/unaccept fonksiyonları
 
 ALTER TABLE public.posts
   ADD COLUMN IF NOT EXISTS accepted_comment_id uuid

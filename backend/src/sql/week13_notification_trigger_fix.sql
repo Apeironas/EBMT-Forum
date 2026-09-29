@@ -1,4 +1,4 @@
--- Yorum bildirimi triggerini yeniden olustur
+-- Yorum bildirimi trigger'ını yeniden oluştur
 
 DROP TRIGGER IF EXISTS tr_notify_post_author_on_comment ON public.comments;
 CREATE TRIGGER tr_notify_post_author_on_comment

@@ -1,4 +1,4 @@
--- Aramayi Turkce karakterlere duyarsiz yap (unaccent)
+-- Aramayı Türkçe karakterlere duyarsız yap (unaccent)
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
 

@@ -1,4 +1,4 @@
--- Kayitta username cakisirsa sonuna numara ekle (_1, _2 ...)
+-- Kayıtta username çakışırsa sonuna numara ekle (_1, _2 ...)
 
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger

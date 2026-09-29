@@ -1,4 +1,4 @@
--- Ban li kullanicinin post/yorum/oy yapmasini engelle (RLS + RPC)
+-- Ban'lı kullanıcının post/yorum/oy yapmasını engelle (RLS + RPC)
 
 CREATE OR REPLACE FUNCTION public.is_banned()
 RETURNS boolean

@@ -1,4 +1,4 @@
--- Post + etiketleri tek transactionda olusturan fonksiyon
+-- Post ve etiketleri tek transaction'da oluşturan fonksiyon
 
 CREATE OR REPLACE FUNCTION public.create_post_with_tags(
   p_title       text,
