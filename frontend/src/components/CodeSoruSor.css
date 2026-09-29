@@ -1,0 +1,29 @@
+/* CodeSoruSor.css */
+
+.my-code-editor textarea {
+  outline: none;
+  /* Satır numaraları için boşluk bırak */
+  padding-left: 45px !important; 
+}
+
+/* Satır numaralarını oluşturan CSS sihirbazlığı */
+.my-code-editor pre {
+  padding-left: 45px !important;
+  counter-reset: line;
+}
+
+.my-code-editor pre code {
+  position: relative;
+  display: block;
+}
+
+.my-code-editor pre code::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: -40px;
+  color: #858585; /* Numaraların rengi */
+  text-align: right;
+  width: 30px;
+  user-select: none; /* Numaraların kopyalanmasını engelle */
+}

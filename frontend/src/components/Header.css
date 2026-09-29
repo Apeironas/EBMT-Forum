@@ -1,0 +1,212 @@
+/* Ana Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    height: 65px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #262569;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Arama Kutusu */
+.search-box {
+    flex: 0 1 500px;
+    margin: 0 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    outline: none;
+    transition: 0.2s;
+}
+
+.search-box input:focus {
+    background-color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Sağ Taraf ve Butonlar */
+.top-actions {
+    display: flex;
+    align-items: center;
+}
+
+.auth-btns {
+    display: flex;
+    gap: 12px;
+}
+
+.login-btn {
+    background: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.register-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Kullanıcı Giriş Yapınca (Yan Yana Hizalama) */
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* --- Bildirim Alanı --- */
+.notification-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.notification-icon {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.notification-icon:hover {
+    transform: scale(1.1);
+}
+
+.badge {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid #ffffff; /* Zilden net ayrılması için */
+    line-height: 1;
+}
+
+/* Bildirim Dropdown Kutusu */
+.notification-dropdown {
+    position: absolute;
+    top: 45px;
+    right: -5px;
+    width: 280px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1100;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-header {
+    padding: 12px 15px;
+    font-weight: 700;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.notification-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 12px 15px;
+    font-size: 13.5px;
+    border-bottom: 1px solid #f1f1f1;
+    color: #444;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.notification-item:hover {
+    background-color: #f0f7ff;
+}
+
+.dropdown-footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #007bff;
+    font-weight: 600;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+}
+
+/* --- DÜZELTİLEN PROFİL ALANI --- */
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background-color: #f5f5f5;
+    border-radius: 20px; /* Daire yerine şık bir hap (pill) kapsayıcı */
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    max-width: 180px; /* Uzun isimlerde taşmayı önler */
+}
+
+.user-profile-header:hover {
+    border-color: #007bff;
+    background-color: #eef6ff;
+}
+
+.user-icon {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* İkonun ezilmesini önler */
+}
+
+.user-name-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap; /* İsmi alt satıra kırmaz */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Çok uzunsa ucuna "..." koyar */
+}

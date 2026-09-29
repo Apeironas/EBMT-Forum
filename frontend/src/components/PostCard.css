@@ -1,0 +1,124 @@
+.post-card {
+    display: flex;
+    border-bottom: 1px solid #e3e6e8;
+    padding: 20px;
+    align-items: flex-start; /* Üste hizala ki uzun metinlerde kaymasın */
+    transition: background 0.2s;
+}
+
+.post-card:hover {
+    background-color: #fbfbfb;
+}
+
+.post-stats {
+    margin-right: 25px;
+    text-align: right;
+    min-width: 90px;
+    color: #6a737c;
+    font-size: 13px;
+}
+
+.post-stats strong {
+    color: #232629;
+}
+
+.answer-box {
+    border: 1px solid #5eba7d;
+    color: #5eba7d;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin: 8px 0;
+    display: inline-block;
+}
+
+.answer-box.accepted { /* Eğer doğru cevap seçildiyse içi dolsun */
+    background-color: #5eba7d;
+    color: white;
+}
+
+/* --- DÜZELTİLDİ: Sağ tarafın tüm alanı kaplaması ve butonun hizalanması için --- */
+.post-content {
+    flex: 1;
+    position: relative; /* İçindeki butonun sağ üst köşeye hizalanmasını sağlar */
+    padding-right: 35px; /* Başlık yazısının butonun üstüne binmesini engeller */
+}
+
+.post-content h3 {
+    color: #0074cc;
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.post-content h3:hover {
+    color: #0095ff;
+}
+
+.post-tags .tag-item {
+    background-color: #e1ecf4;
+    color: #39739d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 6px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* --- YENİ: Kaydetme Butonunun Nokta Atışı Tasarımı --- */
+.save-post-btn {
+    position: absolute;
+    top: -2px;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 20px; /* Simgelerin ekranda şık duracağı boyut */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 2px;
+    z-index: 10; /* Diğer elementlerin üstünde kalmasını garanti eder */
+    line-height: 1;
+}
+
+.save-post-btn:hover {
+    transform: scale(1.2); /* Fareyle üzerine gelince tatlı bir büyüme efekti */
+}
+
+/* Kaydedildiğinde çalışacak ufak zıplama animasyonu */
+/* Instagram Kaydetme Butonu */
+.instagram-save-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: transform 0.1s ease;
+}
+
+/* Fareyle üzerine gelindiğinde çerçevenin hafif koyulaşması veya siyahlaşması */
+.instagram-save-btn:hover svg {
+    color: #262626 !important;
+    fill: #262626 !important;
+}
+
+/* Tıklandığı an (Instagram'daki mikro etkileşim) */
+.instagram-save-btn:active {
+    transform: scale(0.85);
+}
+
+/* Kaydedildiğinde tetiklenen zıplama animasyonu */
+.instagram-save-btn.saved {
+    animation: instaPop 0.3s ease-out;
+}
+
+@keyframes instaPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

@@ -1,0 +1,307 @@
+.sohbet-forum-page {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.sohbet-welcome h1 {
+    color: #262569;
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.sohbet-welcome p {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* --- Konu Açma Kutusu Tasarımı --- */
+.create-topic-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eef0f2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.create-topic-box h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #262569;
+}
+
+.create-topic-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.create-topic-box input:focus {
+    border-color: #262569;
+}
+
+.create-topic-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.create-topic-footer select {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 13px;
+    outline: none;
+}
+
+.create-topic-footer button {
+    padding: 10px 20px;
+    background-color: #262569;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.create-topic-footer button:hover {
+    background-color: #1a1a4a;
+}
+
+/* --- Tartışma Listesi Satır Tasarımları --- */
+.topics-list-container h2 {
+    font-size: 18px;
+    color: #2d3748;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 8px;
+}
+
+.topic-row-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #f0f2f5;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+}
+
+.topic-row-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: #cbd5e0;
+}
+
+.topic-info-side {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    padding-right: 20px;
+}
+
+.topic-category-tag {
+    align-self: flex-start;
+    background-color: #edf2f7;
+    color: #4a5568;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.topic-row-title {
+    margin: 0;
+    font-size: 16px;
+    color: #2d3748;
+    line-height: 1.4;
+}
+
+.topic-row-card:hover .topic-row-title {
+    color: #0074cc;
+}
+
+.topic-row-meta {
+    font-size: 12px;
+    color: #718096;
+}
+
+/* Sağ Taraf Sayaç Alanı */
+.topic-stats-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f7fafc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    min-width: 50px;
+}
+
+.reply-number {
+    font-weight: bold;
+    font-size: 15px;
+    color: #262569;
+}
+
+.reply-text {
+    font-size: 11px;
+    color: #718096;
+}
+
+/* Sohbet Detay Sayfası Ek CSS Kuralları */
+.sohbet-back-btn {
+    background: none;
+    border: none;
+    color: #0074cc;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    padding: 0;
+    font-weight: 500;
+}
+
+.sohbet-back-btn:hover {
+    text-decoration: underline;
+}
+
+.sohbet-detail-header-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #f0f2f5;
+}
+
+.sohbet-detail-header-card h1 {
+    font-size: 24px;
+    color: #2d3748;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.sohbet-comments-section {
+    margin-top: 10px;
+}
+
+.sohbet-comments-section h3 {
+    font-size: 16px;
+    color: #4a5568;
+    margin-bottom: 12px;
+}
+
+/* Yorum Alanı Formu */
+.sohbet-comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.sohbet-comment-form textarea {
+    width: 100%;
+    height: 90px;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.sohbet-comment-form textarea:focus {
+    border-color: #262569;
+}
+
+.sohbet-comment-form button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #262569;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sohbet-comment-form button:hover {
+    background-color: #1a1a4a;
+}
+
+/* Yorum Kartı Görünümü */
+.sohbet-comment-card {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 6px;
+    border: 1px solid #f0f2f5;
+    margin-bottom: 12px;
+}
+
+.sohbet-comment-meta {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.sohbet-comment-meta strong {
+    color: #0074cc;
+    margin-right: 8px;
+}
+
+.sohbet-comment-date {
+    color: #718096;
+}
+
+.sohbet-comment-text {
+    font-size: 14px;
+    color: #2d3748;
+    line-height: 1.5;
+}
+.instagram-save-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: transform 0.1s ease;
+}
+
+.instagram-save-btn:hover svg {
+    color: #262626 !important;
+    fill: #262626 !important;
+}
+
+.instagram-save-btn:active {
+    transform: scale(0.85);
+}
+
+.instagram-save-btn.saved {
+    animation: instaPop 0.3s ease-out;
+}
+
+@keyframes instaPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

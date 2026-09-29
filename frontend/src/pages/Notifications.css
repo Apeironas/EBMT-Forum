@@ -1,0 +1,102 @@
+.notifications-page {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    min-height: 80vh;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.mark-all-read {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.mark-all-read:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.notification-card {
+    position: relative; /* Mavi noktanın kart içinde mutlak konumlanması için şart */
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.notification-card:hover {
+    background-color: #f8fbff;
+}
+
+/* --- YENİ: Okunmamış Bildirim Stili --- */
+.notification-card.unread {
+    background-color: #f0f7ff;
+    border-left: 4px solid #007bff;
+}
+
+/* --- YENİ: Okunmuş Bildirim Stili --- */
+.notification-card.read {
+    background-color: #fafafa;
+    opacity: 0.8;
+}
+
+.notif-avatar {
+    width: 45px;
+    height: 45px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+    flex-shrink: 0; /* Ekran küçüldüğünde avatarın ezilmesini engeller */
+}
+
+.notif-content {
+    flex: 1; /* İçeriğin kartın kalan tüm alanını kaplamasını sağlar */
+    padding-right: 30px; /* Metnin mavi noktanın üstüne binmesini engeller */
+}
+
+.notif-content p {
+    margin: 0;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.notif-time {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    display: block;
+}
+
+/* --- YENİ: Sağ Taraftaki Mavi Okunmadı Noktası --- */
+.unread-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); /* Noktayı dikeyde tam ortalar */
+}

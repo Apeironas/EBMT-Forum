@@ -1,0 +1,176 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sidebar{
+    width:170px;
+    height:100vh;
+    background-color: #262569;
+}
+ .sidebar{
+    padding:10px;
+}
+ .nav-name{
+    color:rgb(212, 218, 249);
+    font-size:17px;
+    display:block;
+    padding: 20px 35px; 
+    text-decoration: none;
+    
+    width: 100%
+    
+
+    
+}
+.nav-link{
+    width:100%;
+    list-style: none;
+    padding:0;
+    margin:0;
+    
+    
+    
+
+    
+}
+.sidebar {
+    width: 170px;
+    height: 100vh;
+    background-color: #262569;
+    padding: 10px;
+
+    position: fixed;  /* sabit */
+    top: 90px;        /* header yüksekliği kadar aşağıdan başlasın */
+    left: 0;
+    z-index: 100;     /* header’ın altında */
+}
+.sidebar .nav-menu {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 0;
+    width: 100%;
+    
+    padding: 0;
+    margin: 0;
+    
+    
+}
+
+.nav-link:hover{
+    background: #1c1b52;
+}
+.top-bar {
+    background: rgb(129, 177, 236);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 90px;
+
+    position: fixed;   /* header sabit */
+    top: 0;            /* sayfanın en üstünde */
+    left: 0;
+    width: 100%;       /* tüm genişlik */
+    z-index: 200;      /* sidebar’dan üstte olmasını sağlar */
+}
+    
+    /* Diğer mevcut özellikleriniz (height: 50px vb.) */
+
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Bildirim ve giriş butonu arası mesafe */
+}
+
+.notification-icon {
+    position: relative; /* Badge'i bunun üzerine sabitlemek için */
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.notification-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #f48225; /* Stack Overflow turuncusu veya kırmızı */
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%; /* Yuvarlak yapar */
+    font-weight: bold;
+}
+
+.notification-icon a {
+    text-decoration: none;
+}
+.search-box {
+    flex: 1;
+    
+    padding: 0 0;;
+    align-items: center;/* Kalan boşluğu doldurur */
+    
+    /* İSTEDİĞİN AYAR BURASI: */
+    margin-left: 150px;  /* FORUM yazısından ne kadar uzaklaşacağını belirler (Değeri artırabilirsin) */
+    margin-right: 250px;  /* Sağdaki bildirim/giriş butonlarından ne kadar uzak duracağını belirler */
+    
+    display: flex;  /* Varsa arka plan rengini siler */
+}
+.search-box input {
+    width: 100%;       /* Bulunduğu alanı tamamen kaplar */
+    padding: 5px 15px 5px 40px;
+    border: 1px solid #babfc4; /* Stack Overflow stili ince çerçeve */
+    border-radius: 3px;
+    outline: none;     /* Tıklandığında çıkan siyah kalın çizgiyi kaldırır */
+    font-size: 14px;
+}
+.App {
+  display: flex;
+  flex-direction: column; /* Sidebar ve content yan yana */
+}
+.main-container {
+  display: flex; /* Sidebar ve içerik yan yana */
+  flex: 1;       /* Kalan alanı doldur */
+}
+
+.content {
+    margin-left: 170px; 
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+    /* BU İKİ SATIRI EKLE: */
+    min-height: calc(100vh - 90px); /* Sayfa boyunu header çıktıktan sonraki tam ekrana tamamlar */
+    align-items: stretch; /* İçeriğin esnemesini sağlar */
+}
+.sidebar {
+  height: calc(100vh - 90px); /* Header yüksekliği kadar boşluk bırak */
+}
+.nav-link.active {
+    background-color: #31317a; /* Sidebar renginden biraz daha açık bir ton */
+    border-left: 6px solid #87cefa; /* Sol tarafa parlak bir şerit */
+}
+
+.nav-link.active .nav-name {
+    color: #87cefa; /* Yazı rengini de değiştirelim */
+    font-weight: bold;
+}
+
+
+

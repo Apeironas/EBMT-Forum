@@ -1,0 +1,163 @@
+.post-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* --- GÜNCELLENDİ: Beğeni alanı ve ana içeriğin yan yana düzgün durması için --- */
+.post-full-content {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+/* --- YENİ: Beğeni Sütun Tasarımı --- */
+.post-vote-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    min-width: 45px;
+}
+
+/* --- YENİ: Beğeni Buton Efektleri --- */
+.vote-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+    transition: transform 0.2s, color 0.2s;
+    line-height: 1;
+    padding: 0;
+}
+
+.vote-btn:hover {
+    color: #007bff;
+    transform: scale(1.2);
+}
+
+/* Beğenildiğinde okun rengi mavi olsun ve zıplama animasyonu çalışsın */
+.vote-btn.voted {
+    color: #007bff;
+    animation: bounce 0.3s ease;
+}
+
+.vote-count {
+    font-weight: bold;
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-top: 5px;
+}
+
+/* --- YENİ: İçerik Alanı --- */
+.post-main-side {
+    flex: 1;
+}
+
+.post-full-content h1 {
+    font-size: 28px;
+    color: #232629;
+    margin: 0 0 10px 0;
+}
+
+.post-meta {
+    color: #6a737c;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.post-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #3c4146;
+    margin: 20px 0;
+}
+
+/* --- YENİ: Etiketlerin şık listelenmesi için --- */
+.post-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.tag-item {
+    background-color: #e1ecf4;
+    color: #39739d;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Yorum Alanları */
+.comments-section {
+    margin-top: 30px;
+    border-top: 1px solid #e3e6e8;
+    padding-top: 20px;
+}
+
+.comments-section h3 {
+    color: #232629;
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.comment-input-area {
+    margin: 20px 0;
+}
+
+.comment-input-area textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.comment-input-area textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.comment-btn-submit {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.comment-btn-submit:hover {
+    background: #0056b3;
+}
+
+.highlight-comment {
+    background-color: #fff9c4 !important;
+    transition: background-color 0.5s ease;
+    border-radius: 8px;
+}
+
+.comment-container {
+    scroll-margin-top: 80px; 
+}
+
+/* --- YENİ: Beğeni Butonu Zıplama Animasyonu --- */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+}

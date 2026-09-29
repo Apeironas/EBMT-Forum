@@ -1,0 +1,135 @@
+.comment-container {
+    margin-top: 15px;
+    padding-left: 15px;
+    border-left: 2px solid #eff0f1; /* Sol taraftaki hiyerarşi çizgisi */
+    background-color: #ffffff;
+}
+
+.comment-main {
+    padding: 10px 0;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #0074cc;
+}
+
+.comment-date {
+    color: #9199a1;
+}
+
+.comment-body {
+    font-size: 15px;
+    color: #232629;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.comment-btn {
+    background: none;
+    border: none;
+    color: #6a737c;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.comment-btn:hover {
+    color: #0074cc;
+}
+
+/* --- YENİ: Beğeni Butonu Aktif (Kırmızı Kalp) Durumu --- */
+.comment-btn.like-btn.liked {
+    color: #e02424; /* Beğenilince metin ve kalp kırmızı olur */
+    font-weight: 600;
+}
+
+/* Butona basıldığı an hafifçe büyüyüp küçülme efekti (Mikro-etkileşim) */
+.comment-btn:active {
+    transform: scale(1.1);
+}
+
+/* --- YENİ: Yanıt Yazma Formu Tasarımı --- */
+.reply-input-form {
+    margin-top: 12px;
+    margin-left: 5px;
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #eef0f2;
+}
+
+.reply-input-form input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.reply-input-form input:focus {
+    border-color: #0074cc;
+    background-color: #fff;
+}
+
+.reply-form-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.reply-form-btns button {
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.reply-form-btns .cancel-btn {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.reply-form-btns .cancel-btn:hover {
+    background: #cbd5e0;
+}
+
+.reply-form-btns .submit-btn {
+    background: #0074cc;
+    color: #fff;
+}
+
+.reply-form-btns .submit-btn:hover {
+    background: #005999;
+}
+
+/* --- GÜNCELLENDİ: Alt yorumlar için kapsayıcı merdiven yapısı --- */
+.replies-container {
+    margin-left: 20px; /* İç içe yorumların sağa doğru kayma miktarını artırdık */
+    border-left: 1px dashed #cbd5e0; /* Alt yorum hiyerarşisini gösteren kesikli çizgi */
+    padding-left: 5px;
+}

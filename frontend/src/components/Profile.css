@@ -1,0 +1,95 @@
+/* Ana kapsayıcıyı sola yanaştır */
+.profile-container {
+    padding: 30px;
+    margin-left: 20px; /* Sidebar'dan biraz boşluk */
+    max-width: 900px; /* Çok uzamaması için sınır */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Tüm içeriği sola hizala */
+}
+
+/* Profil Üst Bilgisi (Yandan hizalı) */
+.profile-header {
+    display: flex;
+    align-items: center; /* Avatar ve ismi dikeyde ortala */
+    gap: 20px; /* Avatar ve isim arası boşluk */
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+/* Kırık resim görselini yuvarlak ve düzgün yap */
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Yuvarlak profil */
+    background-color: #ddd; /* Resim yüklenmezse gri arka plan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Taşmaları kes */
+    border: 2px solid #ccc;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resmi yuvarlağa sığdır */
+}
+
+.profile-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.profile-info p {
+    margin: 5px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Sekme Çubuğu (Yatay ve soldan hizalı) */
+.profile-tabs {
+    display: flex;
+    border-bottom: 2px solid #eee; /* Hafif alt çizgi */
+    width: 100%; /* Çizgi tüm genişliği kaplasın */
+    gap: 5px; /* Butonlar arası sıkı boşluk */
+    margin-bottom: 30px;
+}
+
+/* Sekme Butonları */
+.tab-btn {
+    background: none;
+    border: none;
+    color: #555; /* Normal yazı rengi */
+    padding: 12px 20px; /* Daha iyi hissettiren boşluk */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600; /* Biraz kalın yazı */
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent; /* Alt çizgi alanı hazırla */
+    margin-bottom: -2px; /* Ana çizginin üzerine binmesi için */
+}
+
+/* HOVER DURUMU - Beyazlamayı çözen kısım */
+.tab-btn:hover {
+    color: #007bff; /* Üzerine gelince mavi olsun (veya istediğin renk) */
+    background-color: rgba(0, 123, 255, 0.05); /* Çok hafif mavi arka plan */
+}
+
+/* AKTİF SEKME STİLİ */
+.tab-btn.active {
+    color: #007bff; /* Aktifken mavi yazı */
+    border-bottom: 3px solid #007bff; /* Aktifken mavi alt çizgi */
+}
+
+/* İçerik Alanı */
+.tab-content {
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9; /* Hafif gri arka plan içerik alanı */
+    border-radius: 8px;
+    color: #666;
+    font-size: 16px;
+    text-align: left; /* İçerik de soldan başlasın */
+}

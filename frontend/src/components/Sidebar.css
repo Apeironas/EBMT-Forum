@@ -1,0 +1,41 @@
+/* Sidebar'ı dikeyde yaymak için */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh; /* Ekranın tam boyu */
+    padding-bottom: 20px;
+}
+
+/* Üst menü (Home, Sohbet vb.) */
+.nav-menu {
+    flex: 1; /* Geri kalan boşluğu kaplayarak footer'ı aşağı iter */
+    list-style: none;
+    padding: 0;
+}
+
+/* Alt kısımdaki Profil ve Çıkış Yap alanı */
+.sidebar-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Hafif bir ayraç */
+    padding: 20px 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Profil ve Çıkış butonları arası boşluk */
+}
+
+/* Çıkış yap butonu için özel stil */
+.logout-button {
+    background: none;
+    border: none;
+    color: #ff4d4d; /* Çıkış butonu kırmızımsı ton */
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    transition: opacity 0.2s;
+}
+
+.logout-button:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,17 @@
+# Bağımlılıklar
+node_modules/
+
+# Ortam değişkenleri (gizli anahtarlar!)
+.env
+.env.local
+.env.production
+
+# Loglar
+logs/
+*.log
+
+# İşletim sistemi / editör
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

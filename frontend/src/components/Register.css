@@ -1,0 +1,49 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+    padding: 40px 20px;
+}
+
+.register-box {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.register-box h2 {
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.register-box p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.register-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Kayıt butonu yeşil tonlarında olabilir */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+.register-submit-btn:hover {
+    background-color: #218838;
+}
+
+/* Diğer input-group ve link-btn stillerini Login.css'den miras alacaktır veya 
+   aynen oradakileri buraya da yapıştırabilirsin. */
