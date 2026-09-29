@@ -1,17 +1,4 @@
--- ===========================================================================
--- Hafta 8 (B3): handle_new_user — username çakışmasında kayıt patlamasın
--- ---------------------------------------------------------------------------
--- SORUN: profiles.username UNIQUE (profiles_username_key). Aynı username ile
--- ikinci kayıtta (ör. iki farklı email ama ayni 'testuser') trigger'ın INSERT'i
--- unique_violation atıyor, auth.users insert'i geri alınıyor ve Supabase
--- "Database error saving new user" (500) döndürüyor → kullanıcı kayıt olamıyor.
---
--- ÇÖZÜM: Çakışmada username'in sonuna otomatik ek koy (_1, _2, ...) ve boş bir
--- ad bulana kadar tekrar dene. Yalnızca username çakışmasında (profiles_username_key)
--- devreye girer; başka bir unique çakışması (ör. email) olduğu gibi hata verir.
---
--- Idempotent: CREATE OR REPLACE. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Kayitta username cakisirsa sonuna numara ekle (_1, _2 ...)
 
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger

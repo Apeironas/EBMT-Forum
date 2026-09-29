@@ -1,19 +1,4 @@
--- ===========================================================================
--- Hafta 9 (B5): create_post_with_tags — post + etiketler tek transaction
--- ---------------------------------------------------------------------------
--- ÖNCE: postController.createPost önce postu ekliyor, sonra etiketleri tek tek
--- döngüyle upsert ediyordu. Ortada bir hata olursa etiketsiz/yarım post kalıyor
--- ve kullanıcıya 400 dönüyordu (atomik değil). Ayrıca farklı iki isim aynı slug'a
--- normalize olursa (ör. "C++" ve "c") slug UNIQUE çakışması patlıyordu.
---
--- ÇÖZÜM: Her şeyi tek RPC'de (tek transaction) yap. Hata olursa tamamı geri alınır.
---   * author_id = auth.uid() (istemciden gelen değere güvenilmez)
---   * SECURITY DEFINER: tags/post_tags'e yazmak için (kullanıcıların doğrudan
---     yazma yetkisi yok); ama author_id ve kategori kontrolüyle güvenli.
---   * slug çakışmasında sona kısa ek koyar; aynı isim tekrar gelirse mevcut tag'i kullanır.
---
--- Idempotent: CREATE OR REPLACE. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Post + etiketleri tek transactionda olusturan fonksiyon
 
 CREATE OR REPLACE FUNCTION public.create_post_with_tags(
   p_title       text,

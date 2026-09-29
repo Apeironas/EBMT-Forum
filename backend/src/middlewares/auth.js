@@ -1,10 +1,7 @@
 const { createClient } = require('@supabase/supabase-js');
 const { supabaseAdmin, createSupabaseUserClient } = require('../config/supabase');
 
-// Token doğrulama için tek bir istemci (JWKS önbelleği istekler arası paylaşılır).
-// NOT: Supabase artık token'ları ES256 (asimetrik) imza anahtarlarıyla imzalıyor.
-// Bu yüzden eski "jwt.verify(token, SUPABASE_JWT_SECRET)" (HS256) yöntemi çalışmaz;
-// getClaims token'ı projenin JWKS'i ile doğrular (hem ES256 hem HS256 destekler).
+// Token'ı Supabase'in JWKS'i ile doğrulamak için istemci (getClaims kullanır).
 const verifyClient = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY,
@@ -33,10 +30,9 @@ const verifyToken = async (req, res, next) => {
 
     const claims = data.claims;
 
-    // Diğer kodlar (Vote, Comment) bozulmasın diye köprü:
     req.user = claims;
     req.user.userId = claims.sub;
-    req.user.role = claims.role; // Supabase: 'authenticated' (asıl yetki profiles.role'de, authorize.js'e bak)
+    req.user.role = claims.role;
 
     next();
   } catch (err) {
@@ -44,16 +40,13 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-// NOT: Supabase JWT'sindeki 'role' her zaman 'authenticated'tır; asıl yetki
-// profiles.role kolonundadır. Bu yüzden admin kontrolü DB'den yapılır.
-// verifyToken'dan SONRA kullanılmalıdır.
+// Admin kontrolü: rol JWT'de değil profiles.role'de tutulur, oradan bakılır.
 const isAdmin = async (req, res, next) => {
   try {
     if (!req.user || !req.user.userId) {
       return res.status(401).json({ error: 'Oturum gerekli.', status: 401 });
     }
 
-    // loadProfile daha önce çalıştıysa tekrar sorgu atma.
     let role = req.profile && req.profile.role;
 
     if (role === undefined || role === null) {

@@ -1,10 +1,6 @@
 const { supabaseAdmin, createSupabaseUserClient } = require('../config/supabase');
 
-// Bir post satırını frontend'in beklediği sade şekle çevirir:
-// - tags: isim dizisi
-// - comment_count: silinmemiş yorum sayısı (embed'den)
-// - is_resolved: kabul edilmiş cevap var mı
-// - author: { username, avatar_url }
+// Post satırını sadeleştir: tags dizisi, yorum sayısı, is_resolved.
 function normalizePost(p) {
   if (!p) return p;
   const { post_tags, comment_count, ...rest } = p;
@@ -16,10 +12,8 @@ function normalizePost(p) {
   };
 }
 
-// Post sorgularında ortak select (yazar + etiket + silinmemiş yorum sayısı)
-// NOT: posts ↔ comments arasında iki ilişki var (comments.post_id ve
-// posts.accepted_comment_id), o yüzden yorum sayısı embed'i FK adıyla
-// (comments_post_id_fkey) netleştiriliyor; yazar da posts_author_id_fkey ile.
+// Ortak post select'i. Yorum sayısı ve yazar embed'lerinde FK adı belirtiliyor
+// çünkü posts ile comments arasında iki ilişki var (post_id ve accepted_comment_id).
 const POST_SELECT =
   'id,title,body,author_id,category_id,created_at,view_count,upvote_count,downvote_count,accepted_comment_id,' +
   'author:profiles!posts_author_id_fkey(username,avatar_url),' +
@@ -38,8 +32,7 @@ exports.createPost = async (req, res) => {
       });
     }
 
-    // Post + etiketler tek transaction (create_post_with_tags RPC).
-    // Hata olursa tamamı geri alınır; yarım/etiketsiz post kalmaz.
+    // Post ve etiketleri tek transaction'da oluşturur (RPC).
     const supabaseUser = createSupabaseUserClient(req.accessToken);
     const { data: postId, error: rpcErr } = await supabaseUser.rpc('create_post_with_tags', {
       p_title: title,
@@ -236,10 +229,7 @@ exports.deletePost = async (req, res) => {
   }
 };
 
-// =============================================================
-// CEVAP KABUL ET  POST /api/posts/:postId/accept-answer  Body: { commentId }
-// Yalnızca gönderi sahibi (veya admin/mod) — accept_answer RPC yetkiyi doğrular.
-// =============================================================
+// Cevabı kabul et (sadece gönderi sahibi; yetki kontrolü RPC'de)
 exports.acceptAnswer = async (req, res) => {
   const { postId } = req.params;
   const { commentId } = req.body || {};
@@ -287,9 +277,7 @@ exports.acceptAnswer = async (req, res) => {
   }
 };
 
-// =============================================================
-// KABULÜ GERİ AL  DELETE /api/posts/:postId/accept-answer
-// =============================================================
+// Kabul edilen cevabı geri al
 exports.unacceptAnswer = async (req, res) => {
   const { postId } = req.params;
   try {

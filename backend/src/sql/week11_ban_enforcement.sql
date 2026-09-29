@@ -1,18 +1,5 @@
--- ===========================================================================
--- Hafta 11: Ban'li kullanıcı yazma engeli (RLS + RPC)
--- ---------------------------------------------------------------------------
--- profiles.is_banned = true olan kullanıcı; post açamaz, yorum yapamaz, oy veremez.
--- Okuma serbest kalır.
---
--- ÖNEMLİ: Post ve oy SECURITY DEFINER RPC'lerinden (create_post_with_tags,
--- cast_vote) geçiyor ve bunlar RLS'i BAYPAS eder. Bu yüzden ban kontrolü hem
--- RLS insert politikalarına (doğrudan PostgREST erişimi için) HEM DE RPC'lerin
--- içine eklenir. Yorum, kullanıcı client'ıyla eklendiği için RLS politikası yeter.
---
--- Idempotent. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Ban li kullanicinin post/yorum/oy yapmasini engelle (RLS + RPC)
 
--- Mevcut kullanıcı ban'li mi?
 CREATE OR REPLACE FUNCTION public.is_banned()
 RETURNS boolean
 LANGUAGE sql
@@ -23,9 +10,7 @@ AS $$
   SELECT COALESCE((SELECT is_banned FROM public.profiles WHERE id = auth.uid()), false);
 $$;
 
--- ---------------------------------------------------------------------------
 -- RLS: insert politikalarına ban kontrolü ekle (doğrudan erişim için savunma)
--- ---------------------------------------------------------------------------
 DROP POLICY IF EXISTS "posts_insert_own" ON public.posts;
 CREATE POLICY "posts_insert_own"
   ON public.posts FOR INSERT
@@ -36,9 +21,7 @@ CREATE POLICY "comments_insert_own"
   ON public.comments FOR INSERT
   WITH CHECK (auth.uid() = author_id AND NOT public.is_banned());
 
--- ---------------------------------------------------------------------------
 -- create_post_with_tags: başına ban kontrolü (RPC RLS'i baypas ettiği için)
--- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION public.create_post_with_tags(
   p_title       text,
   p_body        text,
@@ -124,9 +107,7 @@ $$;
 REVOKE ALL ON FUNCTION public.create_post_with_tags(text, text, integer, text[]) FROM PUBLIC;
 GRANT EXECUTE ON FUNCTION public.create_post_with_tags(text, text, integer, text[]) TO authenticated;
 
--- ---------------------------------------------------------------------------
 -- cast_vote: başına ban kontrolü
--- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION public.cast_vote(
   p_target_type text,
   p_target_id uuid,

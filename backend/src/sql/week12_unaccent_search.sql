@@ -1,13 +1,4 @@
--- ===========================================================================
--- Hafta 12: Türkçe aksan-duyarsız arama (unaccent)
--- ---------------------------------------------------------------------------
--- "ogrenci" araması "öğrenci"yi de bulsun. FTS search_tsv sütunu unaccent'li
--- yeniden üretilir. Generated column IMMUTABLE fonksiyon istediği için
--- unaccent'in 2 argümanlı (regdictionary) IMMUTABLE biçimini saran bir wrapper
--- (f_unaccent) kullanılır. Arama sorgusu da f_unaccent ile geçirilmeli (searchController).
---
--- Idempotent. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Aramayi Turkce karakterlere duyarsiz yap (unaccent)
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
 

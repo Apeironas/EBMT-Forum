@@ -1,12 +1,5 @@
-// =============================================================
-// BM Forum - Gerçekçi test verisi (seed)
-// Çalıştırmak için: npm run seed
-// Frontend'in boş ekranla değil gerçekçi içerikle geliştirmesi için birkaç
-// kullanıcı + Türkçe gönderi + etiket + yorum + oy + bir "çözülmüş" örnek üretir.
-//
-// Idempotent: seed kullanıcıları zaten varsa tekrar oluşturmaz.
-// NOT: Sadece geliştirme/test ortamında kullanın (service_role gerekir).
-// =============================================================
+// Test verisi ekler: birkaç kullanıcı, gönderi, etiket ve yorum.
+// Çalıştırmak için: npm run seed  (service_role gerekir, sadece geliştirmede kullanın)
 
 require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');

@@ -1,27 +1,5 @@
--- ===========================================================================
--- Hafta 6: Row Level Security (RLS) — ana tablolarda RLS aktifleştirme + politikalar
--- ---------------------------------------------------------------------------
--- NEDEN: RLS kapalıyken anon/authenticated rolüne verilen tablo yetkileri
--- doğrudan geçerli olur; anon anahtarı olan herkes PostgREST üzerinden tablolara
--- erişebilir. Önceki haftalarda yazılan politikalar (ör. "Public can read
--- non-deleted posts") RLS AÇIK olmadığı sürece HİÇBİR ŞEY yapmaz.
---
--- MANTIK:
---   * Okuma (SELECT): forum herkese açık → silinmemiş içerik herkese görünür.
---   * Yazma: kullanıcı sadece kendi adına (author_id = auth.uid()) yazabilir/günceller.
---   * votes: doğrudan yazma YOK → sadece cast_vote() RPC'si (SECURITY DEFINER) yazar.
---   * tags / post_tags / categories: yazma backend'de service_role ile yapılır
---     (service_role RLS'yi baypas eder), o yüzden burada sadece public SELECT verilir.
---   * soft_delete_post / soft_delete_comment_subtree RPC'leri SECURITY DEFINER olduğu
---     için RLS'yi baypas eder; silme için ayrı UPDATE politikasına gerek yoktur.
---
--- Idempotent: her politika önce DROP IF EXISTS ile düşürülür, tekrar çalıştırmak güvenli.
--- Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- RLS aktiflestir ve tablolar icin erisim politikalarini tanimla
 
--- ---------------------------------------------------------------------------
--- Yardımcı: mevcut kullanıcı admin/moderatör mü?
--- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION public.is_elevated()
 RETURNS boolean
 LANGUAGE sql
@@ -36,9 +14,7 @@ AS $$
   );
 $$;
 
--- ===========================================================================
 -- profiles
--- ===========================================================================
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 
 -- Herkes profilleri okuyabilir (kullanıcı adı/avatar gönderilerde gösteriliyor).
@@ -57,9 +33,7 @@ CREATE POLICY "profiles_update_own"
 -- NOT: INSERT politikası bilinçli olarak yok. Profil kaydı handle_new_user()
 -- trigger'ı (SECURITY DEFINER) ile açılır; o RLS'yi baypas eder.
 
--- ===========================================================================
 -- posts
--- ===========================================================================
 ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Public can read non-deleted posts" ON public.posts;
@@ -82,9 +56,7 @@ CREATE POLICY "posts_update_owner_or_elevated"
   USING (auth.uid() = author_id OR public.is_elevated())
   WITH CHECK (auth.uid() = author_id OR public.is_elevated());
 
--- ===========================================================================
 -- comments
--- ===========================================================================
 ALTER TABLE public.comments ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "comments_select_public" ON public.comments;
@@ -104,9 +76,7 @@ CREATE POLICY "comments_update_owner_or_elevated"
   USING (auth.uid() = author_id OR public.is_elevated())
   WITH CHECK (auth.uid() = author_id OR public.is_elevated());
 
--- ===========================================================================
 -- votes  (doğrudan yazma yok; cast_vote RPC'si yönetir)
--- ===========================================================================
 ALTER TABLE public.votes ENABLE ROW LEVEL SECURITY;
 
 -- Kullanıcı sadece kendi oylarını okuyabilir (ör. "bu gönderiye oy verdim mi").
@@ -118,9 +88,7 @@ CREATE POLICY "votes_select_own"
 -- NOT: INSERT/UPDATE/DELETE politikası YOK. Oylama yalnızca cast_vote()
 -- (SECURITY DEFINER) üzerinden yapılır; doğrudan tabloya yazma engellenir.
 
--- ===========================================================================
 -- tags / post_tags / categories  (yazma backend'de service_role ile)
--- ===========================================================================
 ALTER TABLE public.tags ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "tags_select_public" ON public.tags;

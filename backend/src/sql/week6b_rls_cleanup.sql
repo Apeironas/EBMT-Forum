@@ -1,23 +1,5 @@
--- ===========================================================================
--- Hafta 6b: Eski RLS politikalarının temizliği
--- ---------------------------------------------------------------------------
--- week6_rls.sql'den ÖNCE elle kurulmuş eski politikalar duruyordu. Aynı komuta
--- ait politikalar VEYA (OR) ile birleştiği için en gevşek kural kazanır; bu da
--- yeni sıkı kuralları etkisiz bırakıyordu. Aşağıdaki eski isimli politikalar
--- düşürülür; geriye yalnızca week6_rls.sql'in tutarlı seti kalır.
---
--- Kritik düzeltmeler:
---   * votes: doğrudan INSERT/DELETE/SELECT(true) kaldırıldı → oylama yalnızca
---     cast_vote() RPC'si üzerinden (sayaç + karma tutarlı kalır, gizlilik korunur).
---   * comments: "Public can read comments" (true) kaldırıldı → silinmiş yorumlar
---     artık görünmez.
---   * posts/comments/profiles: doğrudan hard-DELETE kaldırıldı → silme yalnızca
---     soft_delete_* RPC'leri üzerinden (profiles cascade ile içerik kaybı önlenir).
---
--- Idempotent: DROP POLICY IF EXISTS. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Eski/cakisan RLS politikalarini temizle
 
--- categories
 DROP POLICY IF EXISTS "Public can read categories" ON public.categories;
 
 -- comments

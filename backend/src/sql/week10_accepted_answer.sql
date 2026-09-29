@@ -1,15 +1,4 @@
--- ===========================================================================
--- Hafta 10 (D): Kabul edilen cevap (accepted answer) + "çözüldü" durumu
--- ---------------------------------------------------------------------------
--- Gönderi sahibi, kendi gönderisindeki bir yorumu "kabul edilen cevap" olarak
--- işaretleyebilir. accepted_comment_id doluysa gönderi "çözülmüş" sayılır
--- (is_resolved = accepted_comment_id IS NOT NULL, ayrı bayrak tutmuyoruz).
---
--- GÜVENLİK: RPC'ler SECURITY DEFINER ama sadece gönderi SAHİBİ (veya admin/mod)
--- kabul/iptal edebilir; yorum o gönderiye ait ve silinmemiş olmalı.
---
--- Idempotent. Supabase SQL Editor veya: npm run db:init
--- ===========================================================================
+-- Kabul edilen cevap: accepted_comment_id + accept/unaccept fonksiyonlari
 
 ALTER TABLE public.posts
   ADD COLUMN IF NOT EXISTS accepted_comment_id uuid
@@ -19,9 +8,7 @@ CREATE INDEX IF NOT EXISTS idx_posts_accepted_comment
   ON public.posts (accepted_comment_id)
   WHERE accepted_comment_id IS NOT NULL;
 
--- ---------------------------------------------------------------------------
 -- Cevabı kabul et
--- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION public.accept_answer(p_post_id uuid, p_comment_id uuid)
 RETURNS void
 LANGUAGE plpgsql
@@ -63,9 +50,7 @@ BEGIN
 END;
 $$;
 
--- ---------------------------------------------------------------------------
 -- Kabulü geri al
--- ---------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION public.unaccept_answer(p_post_id uuid)
 RETURNS void
 LANGUAGE plpgsql
