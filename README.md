@@ -1,75 +1,48 @@
-# BM Forum — Bölüm Forum Platformu
+# EBMT Forum
 
-Bilgisayar Mühendisliği bölümü öğrencileri için geliştirilmiş, tam kapsamlı (full-stack) bir soru-cevap / tartışma forumu. Öğrenciler gönderi açabilir, birbirlerinin sorularına cevap verebilir, oylama yapabilir ve kabul edilen cevabı işaretleyebilir.
+Bilgisayar Mühendisliği bölümü için yaptığımız forum sitesi. Öğrenciler soru sorabiliyor, cevap yazabiliyor, gönderileri oylayabiliyor. Dönem projesi olarak bir ekiple geliştirdik. Bu repoda backend ve frontend birlikte duruyor.
 
-## ✨ Özellikler
+## Neler yapabiliyor
 
-- 🔐 **Kimlik doğrulama** — Supabase Auth (kayıt / giriş / oturum yenileme), JWT (ES256) doğrulaması
-- 📝 **Gönderiler** — oluşturma, güncelleme, soft-delete, etiketleme, kategoriler
-- 💬 **Yorumlar** — iç içe (nested) yorum ağacı
-- 👍 **Oylama & Karma** — gönderi ve yorumlara oy, kullanıcı itibar (reputation) puanı
-- ✅ **Kabul edilen cevap** — gönderi sahibi bir yorumu "çözüm" olarak işaretleyebilir
-- 🔔 **Bildirimler** — yoruma gerçek zamanlı bildirim (Socket.io) + kalıcı kayıt
-- 🔍 **Tam metin arama** — Türkçe aksana duyarsız (unaccent) arama ("ogrenci" → "öğrenci")
-- ⭐ **Favoriler** — gönderi kaydetme
-- 🛡️ **Güvenlik** — Row Level Security (RLS), ban'li kullanıcı engeli, rate limiting, Helmet, CORS izin listesi
+- Kayıt / giriş (Supabase Auth, JWT)
+- Gönderi açma, düzenleme, silme, etiketleme ve kategoriler
+- Yorum yazma, yorumlara yanıt verme (iç içe)
+- Gönderi ve yorumlara oy verme, kullanıcı itibar puanı
+- Gönderi sahibinin bir cevabı "kabul edilen cevap" olarak işaretlemesi
+- Yorum gelince bildirim (Socket.io ile anlık)
+- Arama — Türkçe karakterlere duyarsız ("ogrenci" yazınca "öğrenci"yi de buluyor)
+- Gönderileri favorilere ekleme
+- Güvenlik: Supabase RLS, ban'lanan kullanıcının yazamaması, rate limit
 
-## 🧱 Teknolojiler
+## Kullandığımız teknolojiler
 
-**Backend:** Node.js, Express, Socket.io, Supabase (PostgreSQL + Auth), Zod (validasyon), Winston (loglama)
-**Frontend:** React (Create React App), React Router
-**Veritabanı:** PostgreSQL (Supabase) — RLS politikaları, SECURITY DEFINER RPC'ler, tam metin arama (tsvector + GIN)
+- **Backend:** Node.js, Express, Socket.io, Supabase (PostgreSQL + Auth)
+- **Frontend:** React
 
-## 📁 Proje Yapısı
+## Klasörler
+
+- `backend/` — API ve veritabanı (SQL migration dosyaları dahil)
+- `frontend/` — React arayüzü
+
+## Nasıl çalıştırılır
+
+Backend:
 
 ```
-.
-├── backend/     # Express API + Supabase + SQL migration'lar
-│   └── src/
-│       ├── controllers/   # iş mantığı (post, comment, vote, auth, ...)
-│       ├── routes/        # API uçları
-│       ├── middlewares/   # auth, RLS/yetki, validasyon, rate limit
-│       ├── sql/           # migration zinciri (RLS, RPC, trigger, FTS)
-│       └── scripts/       # db:init, seed
-└── frontend/    # React arayüzü
-    └── src/
-        ├── components/    # Login, Register, PostCard, Comment, ...
-        ├── pages/         # Home, Profile, Notifications, ...
-        └── services/      # API katmanı (token, refresh, unwrap)
-```
-
-## 🚀 Kurulum
-
-### Backend
-```bash
 cd backend
 npm install
-cp .env.example .env      # Supabase URL/anahtarlar ve DB bilgilerini doldur
-npm run db:init           # SQL migration zincirini çalıştır
-npm run seed              # (opsiyonel) gerçekçi test verisi
-npm start                 # http://localhost:3000
+# .env dosyasını oluştur (.env.example'a bakarak Supabase bilgilerini doldur)
+npm run db:init    # veritabanı tablolarını kurar
+npm start
 ```
 
-### Frontend
-```bash
+Frontend:
+
+```
 cd frontend
 npm install
-# .env dosyası oluştur:
-#   REACT_APP_API_URL=http://localhost:3000/api
-#   REACT_APP_USE_MOCK=false
-$env:PORT=3001; npm start   # http://localhost:3001
+# .env oluştur:  REACT_APP_API_URL=http://localhost:3000/api
+npm start
 ```
 
-## 🔑 Ortam Değişkenleri (backend)
-
-`.env.example` dosyasına bakın. Özet: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`, `DB_*` (PostgreSQL), `CORS_ORIGIN`.
-
-> ⚠️ `.env` dosyaları depoya dahil edilmez (gizli anahtarlar).
-
-## 👥 Ekip
-
-Bölüm dönem projesi olarak bir ekip tarafından geliştirilmiştir (backend, veritabanı ve frontend ekipleri).
-
----
-
-*Bu depo projenin bir kopyasıdır; portfolyo amaçlı yayınlanmıştır.*
+Backend 3000, frontend 3001 portunda çalışır. `.env` dosyaları repoda yok (Supabase anahtarları içerdiği için), kendiniz oluşturmanız gerekiyor.
